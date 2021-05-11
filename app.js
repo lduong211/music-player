@@ -193,6 +193,11 @@ const app = {
             e.target.classList.toggle('active', _this.isRepeat);
         }
 
+        //Xử lý next khi audio end
+        audio.onended = function() {
+            nextBtn.click();
+        }
+
     },
 
     //Load bài hát hiện tại
