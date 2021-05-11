@@ -118,20 +118,21 @@ html{
     margin-top: 354px;
     padding: 12px;
     height: auto;
+    background-color: #1a432f;
 }
 
 .song {
     display: flex;
     align-items: center;
     margin-bottom: 12px;
-    background-color: #fff;
+    background-color: #c9efff;
     padding: 8px 16px;
     border-radius: 5px;
     box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
 }
 
 .song.active {
-    background-color: var(--primary-color);
+    background-color: #81ae7a;
 }
   
 .song:active {
@@ -141,7 +142,7 @@ html{
 .song.active .option,
 .song.active .author,
 .song.active .title {
-    color: #fff;
+    color: #333;
 }
   
 .song .thumb {

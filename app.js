@@ -11,6 +11,7 @@ const nextBtn = $('.btn-forward');
 const prevBtn = $('.btn-backward');
 const randomBtn = $('.btn-random');
 const repeatBtn = $('.btn-repeat');
+const playList = $('.list-music');
 
 const app = {
     currentIndex: 0,
@@ -80,9 +81,9 @@ const app = {
     ],
 
     render: function () {
-        const html = this.songs.map(song => {
+        const html = this.songs.map((song, index) => {
             return `
-                <div class="song">
+                <div class="song ${index === this.currentIndex ? 'active' : ''}" data-index="${index}">
                     <div class="thumb"
                         style="background-image: url('${song.image}')">
                     </div>
@@ -96,7 +97,7 @@ const app = {
                 </div>
             `
         });
-        $('.list-music').innerHTML = html.join('');
+        playList.innerHTML = html.join('');
     },
 
     defineProperties: function() {
@@ -169,6 +170,7 @@ const app = {
                 audio.play();
                 playBtn.onclick();
             }
+            _this.render();
         }
         prevBtn.onclick = function() {
             if(_this.isRandom){
@@ -176,10 +178,11 @@ const app = {
                 audio.play();
                 playBtn.onclick();
             }else{
-                _this.prevSong();s
+                _this.prevSong();
                 audio.play();
                 playBtn.onclick();
             }
+            _this.render();
         }
         
         //Xử lý random
@@ -188,6 +191,7 @@ const app = {
             e.target.classList.toggle('active', _this.isRandom);
         }
 
+        //Xử lý repeat
         repeatBtn.onclick = function(e) {
             _this.isRepeat = !_this.isRepeat;
             e.target.classList.toggle('active', _this.isRepeat);
@@ -195,7 +199,28 @@ const app = {
 
         //Xử lý next khi audio end
         audio.onended = function() {
-            nextBtn.click();
+            if(_this.isRepeat)
+            {
+                audio.play();
+            }else
+                nextBtn.click();
+        }
+
+        // Xử lý click vào list
+        playList.onclick = function(e) {
+            let songNode = e.target.closest('.song:not(.active)');
+            let optionNode = e.target.closest('.option');
+            if(songNode || optionNode){
+                if(songNode){
+                    _this.currentIndex = Number(songNode.dataset.index);
+                    _this.loadCurrentSong();
+                    audio.play();
+                    playBtn.onclick();
+                    _this.render();
+                }
+                if(optionNode)
+                    console.log('test')   
+            };
         }
 
     },
@@ -205,7 +230,7 @@ const app = {
         heading.textContent = this.currentSong.name;
         cdThumb.style.backgroundImage = `url('${this.currentSong.image}')`
         audio.src = this.currentSong.path;
-        console.log(audio);
+        // console.log(audio);
     },
 
     //Next song
