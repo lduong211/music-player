@@ -2,6 +2,9 @@
   "name": "music-player",
   "version": "1.0.0",
   "description": "music-player Server App",
+  "engines": {
+    "node": "14.15.4"
+  },
   "main": "app.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 0",
@@ -19,7 +22,6 @@
   "homepage": "https://github.com/lduong211/music-player#readme",
   "dependencies": {
     "body-parser": "^1.15.2",
-    "express": "^4.14.0",
     "request": "^2.75.0",
     "json-server": "^0.16.3"
   }
