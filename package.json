@@ -1,13 +1,13 @@
 {
   "name": "music-player",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "description": "music-player Server App",
   "engines": {
     "node": "14.15.4"
   },
   "main": "index.html",
   "scripts": {
-    "test": "node test.js"
+    "test": "node index.js"
   },
   "repository": {
     "type": "git",
