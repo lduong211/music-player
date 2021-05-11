@@ -1,0 +1,175 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+html{
+    font-family: 'Poppins', sans-serif;
+}
+
+.icon{
+    padding: 12px;
+    font-size: 24px;
+    color: #fff;
+}
+
+.active{
+    color: #66cf81;
+}
+
+.playing{
+    display: none;
+}
+
+.dashboard{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-image: url('https://www.blender3darchitect.com/wp-content/uploads/2017/08/sound-waves_500_px_85.jpg');
+    width: 100%;
+    background-size: cover;
+    background-position: center center;
+}
+
+/* .dashboard > img{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    
+} */
+
+.header{
+    display: flex;
+    /* position: absolute; */
+    /* top: 0;
+    right: 0;
+    left: 0; */
+    text-align: center;
+    z-index: 100000;
+}
+
+.header .song-name{
+    color: #fff;
+}
+
+.playing-song{
+    flex-grow: 4;
+}
+
+.cd-image{
+    width: 200px;
+    display: flex;
+    margin: auto;
+    z-index: 202321300;
+}
+
+.cd-thumb{
+    background-image: url('https://i.ytimg.com/vi/dLmczwDCEZI/maxresdefault.jpg');
+    width: 100%;
+    padding-top: 100%;
+    border-radius: 50%;
+    background-color: #333;
+    background-size: cover;
+    margin: auto;
+}
+/* 
+.cd-image > img{
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+} */
+
+.control{
+    display: flex;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.control > div{
+    flex-grow: 1;
+    z-index: 1000 !important;
+}
+
+.progress {
+    /* -webkit-appearance: none; */
+    width: 100%;
+    height: 6px;
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: 0.2s;
+    transition: opacity 0.2s;
+}
+
+.progress:hover {
+    opacity: 1;
+}
+  
+.progress::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    background: #04AA6D;
+    cursor: pointer;
+}
+
+.list-music{
+    /* position: absolute; */
+    margin-top: 354px;
+    padding: 12px;
+    height: auto;
+}
+
+.song {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+    background-color: #fff;
+    padding: 8px 16px;
+    border-radius: 5px;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+}
+
+.song.active {
+    background-color: var(--primary-color);
+}
+  
+.song:active {
+    opacity: 0.8;
+}
+  
+.song.active .option,
+.song.active .author,
+.song.active .title {
+    color: #fff;
+}
+  
+.song .thumb {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background-size: cover;
+    margin: 0 8px;
+}
+  
+.song .body {
+    flex: 1;
+    padding: 0 16px;
+}
+
+.song .title {
+    font-size: 18px;
+    color: var(--text-color);
+}
+
+.song .author {
+    font-size: 12px;
+    color: #999;
+}
+
+.song .option {
+    padding: 16px 8px;
+    color: #999;
+    font-size: 18px;
+}
+  
