@@ -174,3 +174,81 @@ html{
     font-size: 18px;
 }
   
+.about{
+    background: url('https://pixelz.cc/wp-content/uploads/2018/07/anonymous-hacker-uhd-4k-wallpaper.jpg') no-repeat center;
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    display: inline-block;
+    transition: all 0.3s ease-in;
+}
+
+.about h3{
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    text-align: center;
+    color: red;
+    font-family: 'Source Code Pro', monospace;
+}
+
+.about p:nth-child(2){
+    position: absolute;
+    color: #85e79f;
+    right: 0;
+    bottom: 270px;
+    background-color: #545486;
+    text-align: center;
+    border-radius: 50px;
+    font-size: 20px;
+}
+
+.about p:nth-child(3){
+    position: absolute;
+    color: #85e79f;
+    right: 0;
+    bottom: 200px;
+    width: 100%;
+    display: none;
+    background-color: #545486;
+    text-align: center;
+    border-radius: 50px;
+    font-size: 20px;
+}
+
+.about .yes{
+    position: absolute;
+    display: none;
+    left: 0;
+    bottom: 100px;
+    width: 50%;
+    background-color: #7d0c3d;
+    border-radius: 10px;
+    text-align: center;
+    padding: 10px;
+}
+.about .yes a{
+    color: #e5b0b0;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.about .no{
+    position: absolute;
+    display: none;
+    right: 0;
+    bottom: 100px;
+    width: 50%;
+    background-color: #7d0c3d;
+    border-radius: 10px;
+    text-align: center;
+    padding: 10px;
+}
+.about .no a{
+    text-decoration: none;
+    font-size: 20px;
+    color: #e5b0b0;
+}

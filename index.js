@@ -12,11 +12,18 @@ const prevBtn = $('.btn-backward');
 const randomBtn = $('.btn-random');
 const repeatBtn = $('.btn-repeat');
 const playList = $('.list-music');
+const listDown = $('.list-down');
+const musicPlayer = $('.music-player');
+const about = $('.about');
+const yesBtn = $('.yes');
+const noBtn = $('.no');
+const p = $('.about p:nth-child(3)');
 
 const app = {
     currentIndex: 0,
     isRandom: false,
     isRepeat: false,
+    noBtnInitial: noBtn.innerHTML,
     songs: [
         {
             name: "Hẹn Gặp Em Dưới Ánh Trăng",
@@ -223,6 +230,27 @@ const app = {
             };
         }
 
+        //Xử lý khi bấm list down
+        listDown.onclick = function(){
+            about.style.width = '100%';
+            yesBtn.style.display = 'inline-block';
+            noBtn.style.display = 'inline-block';
+            p.style.display = 'inline-block';
+        }
+
+        //Xử lý nút bấm yes
+        yesBtn.onclick = function(){
+            about.style.width = 0;
+            noBtn.innerHTML = _this.noBtnInitial;
+            yesBtn.style.display = 'none';
+            noBtn.style.display = 'none';
+            p.style.display = 'none';
+        }
+
+        //Xử lý nút bấm no
+        noBtn.onclick = function(){
+            noBtn.innerHTML = `<a href="#">Ừ!!! ^^</a>`;
+        }
     },
 
     //Load bài hát hiện tại
