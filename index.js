@@ -7,6 +7,7 @@ const cd = $('.cd-image');
 const playBtn = $('.btn-play');
 const pauseBtn = $('.btn-pause');
 const progress = $('#progress');
+const volume = $('#volume');
 const nextBtn = $('.btn-forward');
 const prevBtn = $('.btn-backward');
 const randomBtn = $('.btn-random');
@@ -18,6 +19,10 @@ const about = $('.about');
 const yesBtn = $('.yes');
 const noBtn = $('.no');
 const p = $('.about p:nth-child(3)');
+const songDuration = $('.song-duration');
+const timeRight = $('.time-right');
+const timeLeft = $('.time-left');
+
 
 const app = {
     currentIndex: 0,
@@ -157,7 +162,19 @@ const app = {
             if(audio.duration){
                 const progressPercent = Math.floor(audio.currentTime / audio.duration * 100);
                 progress.value = progressPercent;
+                timeLeft.textContent = _this.timeConvert(Math.floor(audio.currentTime));
             }
+        }
+
+        //xử lý tăng / giảm volume
+        volume.onchange = function(e){
+            const currentVolume = e.target.value;
+            audio.volume = currentVolume;
+            if(audio.volume == 0){
+                songDuration.classList.add('muted');
+            }
+            else 
+                songDuration.classList.remove('muted');    
         }
 
         //Xử lý khi tua
@@ -231,12 +248,12 @@ const app = {
         }
 
         //Xử lý khi bấm list down
-        listDown.onclick = function(){
-            about.style.width = '100%';
-            yesBtn.style.display = 'inline-block';
-            noBtn.style.display = 'inline-block';
-            p.style.display = 'inline-block';
-        }
+        // listDown.onclick = function(){
+        //     about.style.width = '100%';
+        //     yesBtn.style.display = 'inline-block';
+        //     noBtn.style.display = 'inline-block';
+        //     p.style.display = 'inline-block';
+        // }
 
         //Xử lý nút bấm yes
         yesBtn.onclick = function(){
@@ -253,12 +270,22 @@ const app = {
         }
     },
 
+    //Convert giây thành phút:giây
+    timeConvert: function (num) { 
+        let hours = Math.floor(num / 60);
+        if(hours < 10) hours = '0' + hours;
+        let minutes = num % 60;
+        if(minutes < 10) minutes = '0' + minutes;
+        return hours + ":" + minutes;         
+    },
+
     //Load bài hát hiện tại
     loadCurrentSong: function () {
         heading.textContent = this.currentSong.name;
         cdThumb.style.backgroundImage = `url('${this.currentSong.image}')`
         audio.src = this.currentSong.path;
-        // console.log(audio);
+        setTimeout(() => {timeRight.textContent = this.timeConvert(Math.floor(audio.duration))}
+        ,500);
     },
 
     //Next song
@@ -291,6 +318,8 @@ const app = {
         this.defineProperties();
 
         this.handleEvents();
+
+        audio.volume = 0.5;
 
         this.loadCurrentSong();
         
