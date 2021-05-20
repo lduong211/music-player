@@ -8,6 +8,7 @@ const playBtn = $('.btn-play');
 const pauseBtn = $('.btn-pause');
 const progress = $('#progress');
 const volume = $('#volume');
+const volumeIcon = $$('.volume-icon');
 const nextBtn = $('.btn-forward');
 const prevBtn = $('.btn-backward');
 const randomBtn = $('.btn-random');
@@ -28,6 +29,7 @@ const app = {
     currentIndex: 0,
     isRandom: false,
     isRepeat: false,
+    initialVolume: 0.5,
     noBtnInitial: noBtn.innerHTML,
     songs: [
         {
@@ -95,7 +97,7 @@ const app = {
     render: function () {
         const html = this.songs.map((song, index) => {
             return `
-                <div class="song ${index === this.currentIndex ? 'active' : ''}" data-index="${index}">
+                <div class="song ${index === this.currentIndex ? 'active' : ''}" data-index="${index}" data-test="clmn">
                     <div class="thumb"
                         style="background-image: url('${song.image}')">
                     </div>
@@ -114,9 +116,12 @@ const app = {
 
     defineProperties: function() {
         Object.defineProperty(this, 'currentSong', {
-            get: function() {
+            get: () => {
                 return this.songs[this.currentIndex];
-            }
+            },
+            set: (val) => {
+                this.currentSongg = this.songs[val];
+            },
         })
     },
     handleEvents: function() {
@@ -124,11 +129,14 @@ const app = {
         const _this = this;
         const cdWidth = cd.offsetWidth;
         //xử lý cd thumb quay và dừng
-        const cdThumbAnimate = cdThumb.animate([
-            { transform: 'rotate(360deg)' }
-        ], { 
-            duration: 10000,
+        const cdThumbAnimate = cdThumb.animate(
+            { transform: 'rotate(360deg)' },
+            // { opacity: 1 },
+            // { opacity: 0.5 }
+        { 
+            duration: 7000,
             iterations: Infinity,
+            direction: "alternate"
         });
 
         cdThumbAnimate.pause();
@@ -173,9 +181,29 @@ const app = {
             if(audio.volume == 0){
                 songDuration.classList.add('muted');
             }
-            else 
-                songDuration.classList.remove('muted');    
+            else {
+                songDuration.classList.remove('muted');   
+                _this.initialVolume = currentVolume;
+            } 
         }
+
+        //Xử lý khi bấm icon volume
+        volumeIcon.forEach(item => {
+            item.onclick = () => {            
+                if(songDuration.classList.contains('muted')){
+                    volume.value = _this.initialVolume;
+                    audio.volume = _this.initialVolume;
+                    songDuration.classList.remove('muted');
+                    console.log(audio.volume);
+                }
+                else{
+                    volume.value = 0;
+                    audio.volume = 0;
+                    songDuration.classList.add('muted'); 
+                    console.log(audio.volume);
+                }
+            }
+        })
 
         //Xử lý khi tua
         progress.onchange = function(e) {
@@ -247,13 +275,13 @@ const app = {
             };
         }
 
-        //Xử lý khi bấm list down
-        // listDown.onclick = function(){
-        //     about.style.width = '100%';
-        //     yesBtn.style.display = 'inline-block';
-        //     noBtn.style.display = 'inline-block';
-        //     p.style.display = 'inline-block';
-        // }
+        // Xử lý khi bấm list down
+        listDown.onclick = function(){
+            about.style.width = '100%';
+            yesBtn.style.display = 'inline-block';
+            noBtn.style.display = 'inline-block';
+            p.style.display = 'inline-block';
+        }
 
         //Xử lý nút bấm yes
         yesBtn.onclick = function(){
@@ -285,7 +313,7 @@ const app = {
         cdThumb.style.backgroundImage = `url('${this.currentSong.image}')`
         audio.src = this.currentSong.path;
         setTimeout(() => {timeRight.textContent = this.timeConvert(Math.floor(audio.duration))}
-        ,500);
+        ,1000);
     },
 
     //Next song
@@ -315,6 +343,7 @@ const app = {
     },
 
     start: function () {
+
         this.defineProperties();
 
         this.handleEvents();
