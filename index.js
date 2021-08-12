@@ -90,7 +90,7 @@ const app = {
             name: "Alaba Trap",
             singer: "Tommy Tèo & MCK",
             path: "./assets/songs/alaba-trap.mp3",
-            image: "https://i.ytimg.com/vi/0lG5Y6cGcBc/maxresdefault.jpg"
+            image: "https://i1.sndcdn.com/artworks-ff7uVbmm3HkUc5qo-wseZkg-t500x500.jpg"
         }
     ],
 
@@ -118,37 +118,37 @@ const app = {
         Object.defineProperty(this, 'currentSong', {
             get: () => {
                 return this.songs[this.currentIndex];
-            },
-            set: (val) => {
-                this.currentSongg = this.songs[val];
-            },
+            }
         })
     },
     handleEvents: function() {
 
         const _this = this;
         const cdWidth = cd.offsetWidth;
+
         //xử lý cd thumb quay và dừng
-        const cdThumbAnimate = cdThumb.animate(
-            { transform: 'rotate(360deg)' },
+
+        const setAnimate = new KeyframeEffect(cdThumb, [{ transform: 'rotate(360deg)' }], {duration: 7000, iterations: Infinity});
+        const cdThumbAnimate = new Animation(setAnimate)
+        console.log(document.timeline)
+        // const cdThumbAnimate = cdThumb.animate(
+        //     { transform: 'rotate(360deg)' },
             // { opacity: 1 },
             // { opacity: 0.5 }
-        { 
-            duration: 7000,
-            iterations: Infinity,
-            direction: "alternate"
-        });
+        // { 
+        //     duration: 7000,
+        //     iterations: Infinity,
+        // }
+        // );
 
         cdThumbAnimate.pause();
 
         //Xử lý phóng to / thu nhỏ
         document.onscroll = function () {
-            document.onscroll = function () {
-                const scrollTop = window.scrollY || document.documentElement.scrollTop;
-                const newWidth = cdWidth - scrollTop;
-                cd.style.width = newWidth > 0 ? newWidth + 'px' : 0;
-                cd.style.opacity = newWidth / cdWidth;
-            }
+            const scrollTop = window.scrollY || document.documentElement.scrollTop;
+            const newWidth = cdWidth - scrollTop;
+            cd.style.width = newWidth > 0 ? newWidth + 'px' : 0;
+            cd.style.opacity = newWidth / cdWidth;
         }
 
         //Xử lý khi click play / pause
@@ -255,7 +255,7 @@ const app = {
             {
                 audio.play();
             }else
-                nextBtn.click();
+                nextBtn.onclick();
         }
 
         // Xử lý click vào list
@@ -281,6 +281,7 @@ const app = {
             yesBtn.style.display = 'inline-block';
             noBtn.style.display = 'inline-block';
             p.style.display = 'inline-block';
+            musicPlayer.style.display = 'none';
         }
 
         //Xử lý nút bấm yes
@@ -290,6 +291,7 @@ const app = {
             yesBtn.style.display = 'none';
             noBtn.style.display = 'none';
             p.style.display = 'none';
+            musicPlayer.style.display = 'block';
         }
 
         //Xử lý nút bấm no
@@ -313,7 +315,7 @@ const app = {
         cdThumb.style.backgroundImage = `url('${this.currentSong.image}')`
         audio.src = this.currentSong.path;
         setTimeout(() => {timeRight.textContent = this.timeConvert(Math.floor(audio.duration))}
-        ,1000);
+        ,500);
     },
 
     //Next song
@@ -342,7 +344,7 @@ const app = {
         this.loadCurrentSong();
     },
 
-    start: function () {
+    start() {
 
         this.defineProperties();
 
@@ -353,6 +355,7 @@ const app = {
         this.loadCurrentSong();
         
         this.render();
+
     }
 };
 
