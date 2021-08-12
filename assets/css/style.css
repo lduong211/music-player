@@ -5,6 +5,7 @@
 }
 html{
     font-family: 'Poppins', sans-serif;
+    scroll-behavior: smooth;
 }
 
 .icon{
@@ -25,7 +26,7 @@ html{
     position: fixed;
     top: 0;
     width: 100%;
-    background-image: url('http://tiengsonghuong.files.wordpress.com/2011/07/dalat-0.gif');
+    background-image: url('https://www.blender3darchitect.com/wp-content/uploads/2017/08/sound-waves_500_px_85.jpg');
     width: 100%;
     background-size: cover;
     background-position: center center;
@@ -96,6 +97,7 @@ html{
 .song-duration{
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 
 .icon-mute{
@@ -241,7 +243,7 @@ html{
     width: 0;
     height: 100%;
     display: inline-block;
-    transition: all 0.3s ease-in;
+    transition: all 1s ease-in;
 }
 
 .about h3{

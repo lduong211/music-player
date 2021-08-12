@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+        crossorigin="anonymous" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="./assets/css/style.css">
+    <link rel = "icon" href = "https://scontent.fsgn5-7.fna.fbcdn.net/v/t1.6435-9/170935710_1834975913346552_1627269879445762105_n.jpg?_nc_cat=103&ccb=1-3&_nc_sid=09cbfe&_nc_ohc=7tUEz4rg3SYAX9iRpBS&tn=DTdZ152flZyalvlJ&_nc_ht=scontent.fsgn5-7.fna&oh=dfbaa3dd80c42e12daa691ddf13898a9&oe=60C2288F" type = "image/x-icon">
+    <script defer src="./home.js"></script>
+    <title>Music Player</title>
+</head>
+
+<body>
+    <div class="music-player" style="position: relative; top: 0;">
+        <!-- dasboard -->
+        <div class="dashboard">
+            <!-- <img src="https://www.blender3darchitect.com/wp-content/uploads/2017/08/sound-waves_500_px_85.jpg"> -->
+            <!-- header -->
+            <div class="header">
+                <div class="list-down">
+                    <a href="#"><i class="fas fa-chevron-down icon"></i></a>
+                </div>
+                <div class="playing-song">
+                    <h5 style="color:rgb(236 81 81)">Now Playing</h5>
+                    <div class="song-name">Hẹn Gặp Em Dưới Ánh Trăng</div>
+                </div>
+                <div class="plus-icon">
+                    <a href="#"><i class="fas fa-plus icon"></i></a>
+                </div>
+            </div>
+            <!-- cd image -->
+            <div class="cd-image">
+                <!-- <img src="https://i.ytimg.com/vi/dLmczwDCEZI/maxresdefault.jpg"> -->
+                <div class="cd-thumb"></div>
+            </div>
+            <!-- control -->
+            <div class="control">
+                <div class="btn-repeat">
+                    <a href="#"><i class="fas fa-redo-alt icon"></i></a>
+                </div>
+                <div class="btn-backward">
+                    <a href="#"><i class="fas fa-backward icon"></i></a>
+                </div>
+                <div class="btn-play ">
+                    <a href="#"><i class="fas fa-play icon"></i></a>
+                </div>
+                <div class="btn-pause playing">
+                    <a href="#"><i class="fas fa-pause icon"></i></a>
+                </div>
+                <div class="btn-forward">
+                    <a href="#"><i class="fas fa-forward icon"></i></a>
+                </div>
+                <div class="btn-random">
+                    <a href="#"><i class="fas fa-random icon"></i></a>
+                </div>
+            </div>
+            <div class="song-duration">
+                <a class="volume-icon" href="#"><i class="fas fa-volume-down icon icon-sound"></i></a>
+                <a class="volume-icon" href="#"><i class="fas fa-volume-mute icon icon-mute"></i></a>
+                <input id="volume" class="volume" type="range" min="0" step="0.1" max="1" value="0.5">
+                <span class="time-left">00:00</span>
+                <input id="progress" class="progress" type="range" min="0" step="1" max="100" value="0">
+                <span class="time-right">00:00</span>
+            </div>
+            <audio id="audio" src=""></audio>
+        </div>
+
+        <!-- list music -->
+        <div class="list-music">
+
+        </div>
+    </div>
+    <div class="about">
+        <h3>Thiết bị của bạn đã bị hack!!!</h3>
+        <p>Tau đã bảo là vào link nghe nhạc thôi, bấm vào đây làm gì??? Ngáo à???</p>
+        <p>Thấy t đẹp trai hem?<i class="far fa-smile-wink icon"></i></p>
+        <div class="yes">
+            <a href="#">Rất đẹp troai</a>
+        </div>
+        <div class="no">
+            <a href="#">Hơi hơi</a>
+        </div>
+    </div>
+</body>
+
+</html>
